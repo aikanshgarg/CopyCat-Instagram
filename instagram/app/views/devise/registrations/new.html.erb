@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="row"  style="margin-top: 6%;margin-bottom:3%;">
+    <div class="col-lg-6 landing-left">
+      <%= render "devise/shared/dummy-phone" %>
+    </div>
+    <div class="col-lg-6 landing-right text-center d-flex align-items-center">
+      <div>
+      <div class="form-login box">
+        <h3 class="core-sprite brand-name-img"></h3>
+        <h5 class="light-color" style="font-weight: 600;
+    line-height: 20px;
+    font-size: 17px;
+    margin: 0 40px 10px"><strong>Sign up to see photos and <br>videos from your friends</strong></h5>
+
+        <hr>
+
+
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+
+            <!-- adding toastr here for error messages instead of devise's default -->
+                 <!-- devise_error_messages! -->
+
+                 <%= render 'shared/devise-messages'%>
+
+                <div class="form-group">
+                  <%= f.text_field :name, autofocus: true, autocomplete: "true", placeholder: "Full Name", class: "form-control" %>
+                </div>
+
+                <div class="form-group">
+                  <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email", class: "form-control" %>
+                </div>
+
+                <div class="form-group">
+                  
+                  <%= f.password_field :password, autocomplete: "off", placeholder: "Password", class: "form-control"  %>
+                </div>
+
+                <div class="form-group">
+                  <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Password Confirmation", class: "form-control"  %>
+                </div><br>
+
+                <div class="actions">
+                  <%= f.submit "Sign up", class: "btn btn-primary" %>
+                </div>
+                <br>
+
+                <p class="light-color">By signing up, you agree to our <br><strong>Terms, Data Policy </strong>and<strong> Cookies<br> Policy.</strong></p>
+          <% end %>
+        
+    </div>
+
+    <div class="redirect_links box">
+         <%= render "devise/shared/links" %>
+    </div>
+  </div>
+
+</div>
+  
+</div>
+
+
+
+
