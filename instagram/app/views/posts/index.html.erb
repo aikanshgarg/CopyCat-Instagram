@@ -19,32 +19,42 @@
 							<%= f.text_field :content, class: "form-control border-0", placeholder: "Say something about this..." %>
 						</div>
 					</div>
-					<div class="fallback">
-						<%= file_field_tag "images[]", type: :file, multiple: true %>
-					</div>
-					<div class="dz-message m-0"></div>
-						<div class="dropzone-previews mb-3">
-							<div class="upload-photos-icon">
-								<i class="fa fa-plus fa-2x" aria-hidden="true" style="color: #dddfe2"></i>
-							</div>
-						</div>
-					<%= f.submit "Post", class: "btn btn-primary" %>
-				<% end %>
-			</div>
+
+
+<!-- If you want another name than file you can configure dropzone with the option paramName.
+
+If you want your file uploads to work even without JavaScript, you can include an element with the class fallback that dropzone will remove if the browser is supported. If the browser isn’t supported, Dropzone will not create fallback elements if there is a fallback element already provided. (Obviously, if the browser doesn’t support JavaScript, the form will stay as is)
+
+Typically this will look like this:
+
+<form action="/file-upload" class="dropzone">
+  <div class="fallback">
+    <input name="file" type="file" multiple />
+  </div>
+</form> -->
+
+		<div class="fallback">
+			<%= file_field_tag "images[]", type: :file, multiple: true %>
 		</div>
+		<div class="dz-message m-0"></div>
+			<div class="dropzone-previews mb-3">
+				<div class="upload-photos-icon">
+					<i class="fa fa-plus fa-2x" aria-hidden="true" style="color: #dddfe2"></i>
+				</div>
+			</div>
+		<%= f.submit "Post", class: "btn btn-primary" %>
+	<% end %>
+</div>
+		</div>
+
+		<div id="posts">
+			<%= render 'posts/posts_list' %>
+		</div>
+
+
 	</div>
+
+
 </div>
 
 
-
-
-
-<!-- standard is the version that we can define the way we want (uploaders->photo_uploader.rb) -->
-
-
-<% @posts.each do |post| %>
-	<p><%= post.content %></p>
-	<% post.photos.each do |photo| %>
-		<%= image_tag photo.image.url(:standard) %>
-	<% end %>
-<% end %>

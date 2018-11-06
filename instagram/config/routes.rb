@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'users/show'
   
   # we made our pages controller's home action's view as our default home page(root)
-  root 'pages#home'
+  root 'posts#index'
   
   # we did this to change the names of links in the url
   devise_for :users,

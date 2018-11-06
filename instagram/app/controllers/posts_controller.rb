@@ -18,13 +18,14 @@ class PostsController < ApplicationController
   	if @post.save
   		if params[:images]
   			params[:images].each do |img|
-  				@post.photos.create(image: params[:images][img])
+  				@post.photos.create(image: img[1])
+          # img  is a hash, and img[1]   will return image object.
   			end
   		end
   		redirect_to posts_path
-  		flash[:notice] = "New post added..."
+  		flash[:notice] = "New post added ..."
   	else
-  		flash[:alert] = "Something went wrong..."
+  		flash[:alert] = "Something went wrong ..."
   		redirect_to posts_path
   	end
   end
