@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   
 
   before_action :authenticate_user!
-  before_action :find_post, only: [:show]
+  before_action :find_post, only: [:show, :destroy]
 
 
   # includes is like a join table between posts and photos
@@ -30,15 +30,31 @@ class PostsController < ApplicationController
   	end
   end
 
-
+# show method is for showing a particular post
   def show
     @photos = @post.photos
+  end
+
+# for deleting a post
+  def destroy
+  # check signed in user is the creator of post
+    if @post.user == current_user 
+      if @post.destroy
+        flash[:notice] = "Post deleted!"
+      else
+        flash[:alert] = "Something went wrong ..."
+      end
+    else
+      flash[:notice] = "You don't have permission to do that!"
+    end
+    redirect_to root_path
   end
 
   private
   def find_post
   	@post = Post.find_by id: params[:id]
 
+# returns to the method which called find_post, if a post is found. Else, flashes danger. Finally redirects to root
   	return if @post
   	flash[:danger] = "Post not found!"
   	redirect_to root_path	

@@ -16,7 +16,7 @@ class User < ApplicationRecord
 	    user.email = auth.info.email
 	    user.password = Devise.friendly_token[0,20]
 	    user.name = auth.info.name   # assuming the user model has a name
-	    user.image = auth.info.image.gsub!("_normal","") # assuming the user model has an image
+	    user.image = auth.info.image.gsub!("_normal","") # assuming the user model has an image, we are removing normal parameter from twitter's url of user image so that image is more clear
 
 	    # we added these two 
 	    user.uid = auth.uid

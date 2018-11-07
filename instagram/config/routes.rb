@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
    # resources doesn't needs us to send id in the url as well, so it is same as get '/posts/:id', to: 'posts#show'.
    # Also, we have used nested resoures for photos as it's like a child of post. Everytime we will need a post_id when we need a photo!
-  resources :posts, only: [:index, :show, :create] do
+  resources :posts, only: [:index, :show, :create, :destroy] do
  	  resources :photos, only: [:create]
   end
 

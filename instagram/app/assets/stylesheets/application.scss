@@ -396,3 +396,19 @@ footer .nav-item {
 	background-position: -150px -353px;
 	display: inherit;
 }
+
+// particular post's page (on clicking the posted time ago wala link)
+
+.comment-list {
+  height: 310px;
+  overflow: auto; // so that we have a scrollbar when comments overflow the height
+}
+ .post-show-img {
+  background-color: #fafafa;
+  margin: -10px 0;
+}
+
+.delete-post-icon {
+  color: #262626;
+  font-size: 20px;
+}
