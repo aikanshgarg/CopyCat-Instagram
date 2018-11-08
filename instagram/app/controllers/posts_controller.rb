@@ -7,7 +7,7 @@ class PostsController < ApplicationController
 
   # includes is like a join table between posts and photos
   def index
-  	@posts = Post.all.limit(10).includes(:photos, :user).order('created_at desc')
+  	@posts = Post.all.limit(10).includes(:photos, :user, :likes).order('created_at desc')
   	@post = Post.new
   end
 
@@ -33,6 +33,8 @@ class PostsController < ApplicationController
 # show method is for showing a particular post
   def show
     @photos = @post.photos
+    @likes = @post.likes.includes(:user)
+    @is_liked = @post.is_liked(current_user)
   end
 
 # for deleting a post
