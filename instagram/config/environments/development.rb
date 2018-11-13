@@ -61,4 +61,8 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
+
+# adding so that database is not deadlocked after deleting a like
+  # config.active_job.queue_adapter = :inline
+
 end
