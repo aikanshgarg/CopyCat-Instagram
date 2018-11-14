@@ -1,0 +1,5 @@
+// we render the comment list, after user has deleted the comment, with ajax
+
+$('#comment-post-<%= @post.id.to_s %>').
+  html('<%= j render "posts/comment_list", {post: @post} %>');
+console.log("delete comment success");

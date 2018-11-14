@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   before_action :find_post, only: [:show, :destroy]
 
 
-  # includes is like a join table between posts and photos
+  # includes is like a join table between posts and photos/user/likes
   def index
   	@posts = Post.all.limit(10).includes(:photos, :user, :likes).order('created_at desc')
   	@post = Post.new
@@ -34,8 +34,10 @@ class PostsController < ApplicationController
   def show
     @photos = @post.photos
     @likes = @post.likes.includes(:user)
+    @bookmarks = @post.bookmarks.includes(:user)
     @comment = Comment.new
     @is_liked = @post.is_liked(current_user)
+    @is_bookmarked = @post.is_bookmarked(current_user)
   end
 
 # for deleting a post

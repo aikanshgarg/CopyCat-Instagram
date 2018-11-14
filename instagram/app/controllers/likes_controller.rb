@@ -2,7 +2,7 @@ class LikesController < ApplicationController
 
 	before_action :authenticate_user!
 	
-# this method builds/creates an entry corresponding to a post for like of current_user. Then, saves the post which has been liked in @post instance
+# this method builds/creates an entry corresponding to a post for like of current_user. Then saves the post, which has been liked, in @post instance
 	def create
 		@like = current_user.likes.build(like_params)
 		@post = @like.post
