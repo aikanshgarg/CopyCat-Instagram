@@ -33,8 +33,16 @@ class User < ApplicationRecord
 	  end
 	end
 
-
-	
+ 	# function receives a query (example: "Aik") in variable term and searches in User table for column => name
+	def self.search(term)
+		if term
+			where('name LIKE ?', "%#{term}%")
+			# % sign at both start and end of "%#{term}%" signifies that the searched query can be middle part of complete name as well.
+			# Example: "tro" can search "Stro" as well as "trong" as well as "Strong"   
+		else
+			nil
+		end		
+	end
 
 
 end

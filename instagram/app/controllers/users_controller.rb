@@ -1,5 +1,13 @@
 class UsersController < ApplicationController
   
+  # search is a method defined in model
+  # term is what we receive from user as input, to search
+  def index
+  	@users = User.search(params[:term])
+  	respond_to :js  	
+  end
+
+
   def show
   	@user = User.find(params[:id])
   	

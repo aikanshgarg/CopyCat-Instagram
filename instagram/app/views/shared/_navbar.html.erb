@@ -6,9 +6,17 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <form class="form-inline my-2 my-lg-0 ml-md-auto">
-              <input class="form-control mr-sm-2 text-center common-btn" type="search" placeholder="Search" aria-label="Search">
-            </form>
+            
+
+            <!-- FORM FOR SEARCH -->
+            
+            <!-- form_for creates a form for an object of a model, while form_tag simply creates a form (in general, used for search) -->
+            <!-- users path takes to index action of users_controller -->
+
+            <%= form_tag users_path, method: :get, class: "form-inline my-2 my-lg-0 ml-md-auto", id: "users-search", remote: true do %>
+              <%= text_field_tag :term, params[:term], class: "form-control mr-sm-2 text-center common-btn", placeholder: "Search", autocomplete: "off" %>
+              <div id="users-result"></div> <!-- This is the dropdown which shows users found for given search query. Here, results will come from index.js.erb file from AJAX -->
+            <% end %>
 
 
             <ul class="navbar-nav ml-md-auto">

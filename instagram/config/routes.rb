@@ -17,13 +17,13 @@ Rails.application.routes.draw do
 
   # get '/users/:id', to: 'users#show'
   # /users/3 -> Users controller, show action, params {id: '3'}
-   resources :users, only: [:show]
+   resources :users, only: [:index, :show]
 
    # resources doesn't needs us to send id in the url as well, so it is same as get '/posts/:id', to: 'posts#show'.
    # Also, we have used nested resoures for photos as it's like a child of post. Everytime we will need a post_id when we need a photo!
   resources :posts, only: [:index, :show, :create, :destroy] do
     resources :photos, only: [:create]
-    resources :likes, only: [:create, :destroy], shallow: true
+    resources :likes, only: [:create,  :destroy], shallow: true
     resources :comments, only: [:index, :create, :destroy], shallow: true
     resources :bookmarks, only: [:create, :destroy], shallow: true 
   end
